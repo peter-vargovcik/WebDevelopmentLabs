@@ -26,7 +26,7 @@ public class PersonDAO {
     public PersonDAO() {
         try {
             System.out.println("Loading db driver...");
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/persons_db",
                     "vargi83",
@@ -36,6 +36,10 @@ public class PersonDAO {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
             Logger.getLogger(PersonDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
