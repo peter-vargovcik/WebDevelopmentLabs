@@ -6,6 +6,7 @@
 package dao;
 
 import java.util.Date;
+import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -18,14 +19,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"emailAddress", "name", "surname", "birthday", "street", "city", "country", "postCode",
     "phone", "username", "password", "mothersMaidenname", "creditCardType", "creditCardNumber", "creditCardExpires",
     "creditCardNumberSecureNo", "occupation", "company", "vehicle", "bloodType", "heightImperial", "weightPounds",
-    "weightKilograms", "heightCentimeters", "latitude", "longitude"})
+    "weightKilograms", "heightCentimeters", "latitude", "longitude", "link"})
 public class Person {
 
-    String emailAddress, name, surname, street, city, country, postCode, phone, username, password,
+    private String emailAddress, name, surname, street, city, country, postCode, phone, username, password,
             mothersMaidenname, creditCardType, creditCardNumber, creditCardExpires, creditCardNumberSecureNo,
             occupation, company, vehicle, bloodType, heightImperial;
-    double weightPounds, weightKilograms, heightCentimeters;
-    float latitude, longitude;
+    private double weightPounds, weightKilograms, heightCentimeters;
+    private float latitude, longitude;
+    
+    private List<Link> link;
 
     Date birthday;
 
@@ -264,6 +267,15 @@ public class Person {
 
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }    
+    
+    @XmlElement(name="link")
+    public List<Link> getLink() {
+        return link;
+    }
+
+    public void setLink(List<Link> link) {
+        this.link = link;
     }
 
     @Override
